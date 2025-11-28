@@ -1,0 +1,12 @@
+_build/
+*.merlin
+*.cmi
+*.cmo
+*.cmx
+*.o
+*.exe
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
