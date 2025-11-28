@@ -1,0 +1,24 @@
+(lang dune 3.20)
+
+(name lab1_fp)
+
+(generate_opam_files true)
+
+(source
+ (github aeshabb/lab1_fp))
+
+(authors "aeshabb")
+
+(maintainers "aeshabb")
+
+(license MIT)
+
+(package
+ (name lab1_fp)
+ (synopsis "Functional Programming Lab 1 - Project Euler Problems 4 and 26")
+ (description "Solutions for Project Euler problems using OCaml with various approaches: tail recursion, modular design, lazy evaluation")
+ (depends
+  (ocaml (>= 4.14.0))
+  dune
+  zarith
+  (alcotest :with-test)))

@@ -1,0 +1,3 @@
+(library
+ (name task4_palindrome)
+ (modules utils task4_recursion task4_fold task4_map task4_lazy))

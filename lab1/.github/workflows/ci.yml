@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  ocaml-build-and-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup OCaml & opam
+        uses: ocaml/setup-ocaml@v2
+        with:
+          ocaml-compiler: "4.14.0"
+          dune-cache: true
+
+      - name: Install dependencies
+        run: |
+          eval "$(opam env)"
+          opam update
+          opam install --yes dune ocamlformat alcotest zarith
+
+      - name: Check formatting
+        working-directory: lab1/ocaml
+        run: |
+          eval "$(opam env)"
+          ocamlformat --version
+          git ls-files '*.ml' '*.mli' | xargs -r ocamlformat --enable-outside-detected-project --check
+
+      - name: Build
+        working-directory: lab1/ocaml
+        run: |
+          eval "$(opam env)"
+          dune build --profile dev
+
+      - name: Test
+        working-directory: lab1/ocaml
+        run: |
+          eval "$(opam env)"
+          dune runtest --no-buffer
+
+  java-build-and-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        working-directory: lab1/java
+        run: mvn -B clean package
+
+      - name: Run tests
+        working-directory: lab1/java
+        run: mvn -B test
+
+      - name: Run Checkstyle
+        working-directory: lab1/java
+        run: mvn -B checkstyle:checkstyle
+        continue-on-error: true

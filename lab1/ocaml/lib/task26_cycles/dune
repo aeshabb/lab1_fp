@@ -1,0 +1,3 @@
+(library
+ (name task26_cycles)
+ (modules utils task26_recursion task26_mix))

@@ -1,0 +1,9 @@
+(test
+ (name test_task4)
+ (modules test_task4)
+ (libraries task4_palindrome alcotest))
+
+(test
+ (name test_task26)
+ (modules test_task26)
+ (libraries task26_cycles alcotest))
