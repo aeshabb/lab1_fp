@@ -8,7 +8,7 @@ let cycle_length d =
       match List.assoc_opt remainder remainders with
       | Some start_pos -> pos - start_pos
       | None ->
-          let next_remainder = (remainder * 10) mod d in
+          let next_remainder = remainder * 10 mod d in
           find_cycle ((remainder, pos) :: remainders) next_remainder (pos + 1)
   in
   find_cycle [] 1 0
