@@ -6,8 +6,10 @@ let longest_cycle_tail_rec limit =
     if d >= limit then max_d
     else
       let len = cycle_length d in
-      if len > max_len then find_max (d + 1) d len
-      else find_max (d + 1) max_d max_len
+      let new_max_d, new_max_len =
+        if len > max_len then (d, len) else (max_d, max_len)
+      in
+      find_max (d + 1) new_max_d new_max_len
   in
   find_max 2 0 0
 

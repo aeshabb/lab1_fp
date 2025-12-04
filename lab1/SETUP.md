@@ -70,24 +70,4 @@ opam install -y zarith
 sudo apt-get install -y maven
 ```
 
-## GitHub Actions CI/CD
 
-После push в репозиторий автоматически запустятся:
-- Сборка и тесты OCaml
-- Проверка форматирования OCaml кода
-- Сборка и тесты Java
-- Checkstyle для Java
-
-## Структура требований
-
-Проект полностью соответствует требованиям:
-
-✅ **Хвостовая рекурсия** - `task4_recursion.ml`, `task26_recursion.ml`  
-✅ **Обычная рекурсия** - `task4_recursion.ml`, `task26_recursion.ml`  
-✅ **Модульная реализация** (fold, filter, map) - `task4_fold.ml`, `task4_map.ml`, `task26_mix.ml`  
-✅ **Генерация с map** - `task4_map.ml`  
-✅ **Бесконечные списки/ленивые коллекции** - `task4_lazy.ml`  
-✅ **Традиционный язык (Java)** - весь `java/` каталог  
-✅ **CI с тестами** - `.github/workflows/ci.yml`  
-✅ **Lint tools** - ocamlformat, checkstyle  
-✅ **Автоформатирование** - ocamlformat в CI

@@ -1,3 +1,9 @@
 (library
  (name task26_cycles)
- (modules utils task26_recursion task26_mix))
+ (modules
+  utils
+  task26_recursion
+  task26_mix
+  task26_lazy
+  task26_map
+  task26_imperative))

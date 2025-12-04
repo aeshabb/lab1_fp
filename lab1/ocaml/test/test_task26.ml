@@ -2,6 +2,9 @@ open Alcotest
 open Task26_cycles.Utils
 open Task26_cycles.Task26_recursion
 open Task26_cycles.Task26_mix
+open Task26_cycles.Task26_lazy
+open Task26_cycles.Task26_map
+open Task26_cycles.Task26_imperative
 
 (* Тест для вычисления длины цикла *)
 let test_cycle_length () =
@@ -36,6 +39,21 @@ let test_longest_cycle_filter () =
   check int "d<10: longest cycle is for d=7" 7 (longest_cycle_filter 10);
   check int "d<100: longest cycle is for d=97" 97 (longest_cycle_filter 100)
 
+(* Тест для ленивой реализации *)
+let test_longest_cycle_lazy () =
+  check int "d<10: longest cycle is for d=7" 7 (longest_cycle_lazy 10);
+  check int "d<100: longest cycle is for d=97" 97 (longest_cycle_lazy 100)
+
+(* Тест для реализации с map *)
+let test_longest_cycle_map () =
+  check int "d<10: longest cycle is for d=7" 7 (longest_cycle_map 10);
+  check int "d<100: longest cycle is for d=97" 97 (longest_cycle_map 100)
+
+(* Тест для императивной реализации *)
+let test_longest_cycle_imperative () =
+  check int "d<10: longest cycle is for d=7" 7 (longest_cycle_imperative 10);
+  check int "d<100: longest cycle is for d=97" 97 (longest_cycle_imperative 100)
+
 let () =
   let open Alcotest in
   run "task26"
@@ -57,4 +75,13 @@ let () =
       ( "longest_cycle_filter",
         [ test_case "Longest cycle - filter" `Quick test_longest_cycle_filter ]
       );
+      ( "longest_cycle_lazy",
+        [ test_case "Longest cycle - lazy" `Quick test_longest_cycle_lazy ] );
+      ( "longest_cycle_map",
+        [ test_case "Longest cycle - map" `Quick test_longest_cycle_map ] );
+      ( "longest_cycle_imperative",
+        [
+          test_case "Longest cycle - imperative" `Quick
+            test_longest_cycle_imperative;
+        ] );
     ]

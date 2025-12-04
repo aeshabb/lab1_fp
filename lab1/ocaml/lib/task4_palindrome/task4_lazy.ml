@@ -1,9 +1,13 @@
 open Utils
 
+(* Вычисление границ N-значных чисел *)
+let compute_bounds digits =
+  let rec pow10 n = if n = 0 then 1 else 10 * pow10 (n - 1) in
+  (pow10 digits - 1, pow10 (digits - 1))
+
 (* Генерация бесконечной последовательности произведений *)
 let largest_palindrome_lazy digits =
-  let max_num = int_of_float (10.0 ** float_of_int digits) - 1 in
-  let min_num = int_of_float (10.0 ** float_of_int (digits - 1)) in
+  let max_num, min_num = compute_bounds digits in
 
   (* Генерируем последовательность пар (i, j) *)
   let rec pairs_seq i j () =
