@@ -1,10 +1,5 @@
 open Utils
 
-(* Вычисление границ N-значных чисел *)
-let compute_bounds digits =
-  let rec pow10 n = if n = 0 then 1 else 10 * pow10 (n - 1) in
-  (pow10 digits - 1, pow10 (digits - 1))
-
 (* Генерация всех произведений двух N-значных чисел *)
 let generate_products digits =
   let max_num, min_num = compute_bounds digits in
